@@ -3,7 +3,6 @@ package iww.hau
 import iww.hau.model.TemperatureRecord
 import iww.hau.model.TemperatureRequest
 import mu.KLogging
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import java.time.LocalDate
@@ -13,12 +12,9 @@ import java.util.*
 
 @RestController
 @RequestMapping("/temperature")
-class TemperatureRecordController() {
+class TemperatureRecordController(val repository: ReactiveTemperatureRecordRepository) {
 
     companion object: KLogging()
-
-    @Autowired
-    lateinit var repository: ReactiveTemperatureRecordRepository
 
     @PostMapping
     fun createTempRecord(@ModelAttribute temperatureReq: TemperatureRequest, @RequestHeader("User-Agent") userAgent:String) {
