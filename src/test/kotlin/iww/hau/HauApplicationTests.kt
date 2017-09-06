@@ -1,4 +1,4 @@
-package iww.hau.hau
+package iww.hau
 
 import org.junit.Test
 import org.junit.runner.RunWith
