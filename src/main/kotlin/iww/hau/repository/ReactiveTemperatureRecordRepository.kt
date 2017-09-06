@@ -1,4 +1,4 @@
-package iww.hau
+package iww.hau.repository
 
 import iww.hau.model.TemperatureRecord
 import org.springframework.data.repository.reactive.ReactiveCrudRepository

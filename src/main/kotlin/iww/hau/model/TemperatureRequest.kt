@@ -10,12 +10,15 @@ class TemperatureRequest {
 
     var rssi:Int = 0
 
+    var light:Int = 0
+
     var insideTemp:Float = 0.0F
 
     var outsideTemp:Float = 0.0F
 
     override fun toString(): String {
-        return "TemperatureRequest(deviceName='$deviceName', ipAddress='$ipAddress', sid='$sid', rssi=$rssi, insideTemp='$insideTemp', outsideTemp='$outsideTemp')"
+        return "TemperatureRequest(deviceName='$deviceName', ipAddress='$ipAddress', sid='$sid', rssi=$rssi, light=$light, insideTemp=$insideTemp, outsideTemp=$outsideTemp)"
     }
+
 
 }
