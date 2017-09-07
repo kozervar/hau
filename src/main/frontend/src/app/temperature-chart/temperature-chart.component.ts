@@ -13,7 +13,9 @@ class TemperatureRecord {
 
 class Temp {
   hour:number;
-  temp:number;
+  tempOut:number;
+  tempIn:number;
+  light:number;
 }
 
 @Component({
@@ -25,16 +27,20 @@ export class TemperatureChartComponent implements OnInit {
 
   temperatureRecords: TemperatureRecord[] = [];
 
+  daysOfMonth = [];
+
   constructor(private http: Http) {
+    const currDate = new Date();
+    this.daysOfMonth = Array.from({length:currDate.getDate()},(v,k)=>k+1);
   }
 
   ngOnInit() {
-    this.getTemperatureRecords();
+    const currDate = new Date();
+    this.getTemperatureRecords(currDate.getDate());
   }
 
-  private getTemperatureRecords() {
-    const day = new Date().getDate();
-    this.http.get('http://itworkswell.pl:3000/temperature?fd=' + day)
+  public getTemperatureRecords(day:number) {
+    this.http.get(`http://itworkswell.pl:3000/temperature?fd=${day}&td=${day}`)
       .subscribe(r => {
         this.lineChartLabels.splice(0, this.lineChartLabels.length);
         this.lineChartData = [];
@@ -45,23 +51,36 @@ export class TemperatureChartComponent implements OnInit {
           let date = new Date(tr.creationTime);
           let temp = new Temp();
           temp.hour = date.getHours();
-          temp.temp = tr.outsideTemp;
+          temp.tempOut = tr.outsideTemp;
+          temp.tempIn = tr.insideTemp;
+          temp.light = tr.light;
           return temp;
         });
-        let tempsData = [];
+        let insideTemp = [];
+        let outsideTemp = [];
+        let light = [];
         for (let h = 0; h <= 23; h++) {
-          let temps = temperatures.filter(t => t.hour == h).map(t => t.temp);
-          let maxTemp = temps.reduce((a,b) => a+b, 0) / temps.length;
+          let outsideTemps = temperatures.filter(t => t.hour == h).map(t => t.tempOut);
+          let insideTemps = temperatures.filter(t => t.hour == h).map(t => t.tempIn);
+          let lights = temperatures.filter(t => t.hour == h).map(t => t.light / 10);
+          let tin = outsideTemps.reduce((a,b) => a+b, 0) / outsideTemps.length;
+          let tout = insideTemps.reduce((a,b) => a+b, 0) / insideTemps.length;
+          let l = lights.reduce((a,b) => a+b, 0) / lights.length;
 
-          if(isNaN(maxTemp)) {
-            maxTemp = 0;
-          }
-          maxTemp = Math.round(maxTemp);
-          console.log(maxTemp);
-          tempsData.push(maxTemp);
+          tin = isNaN(tin) ? 0 : Math.round(tin);
+          tout = isNaN(tout) ? 0 : Math.round(tout);
+          l = isNaN(l) ? 0 : Math.round(l);
+
+          insideTemp.push(tin);
+          outsideTemp.push(tout);
+          light.push(l);
           this.lineChartLabels.push('G: ' + h);
         }
-        this.lineChartData = [{data: tempsData, label: 'Temperatura zewnętrzna'}];
+        this.lineChartData = [
+          {data: insideTemp, label: 'Temperatura zewnętrzna'},
+          {data: outsideTemp, label: 'Temperatura wewnętrzna'},
+          // {data: light, label: 'Światło'}
+        ];
 
       });
   }
@@ -69,19 +88,37 @@ export class TemperatureChartComponent implements OnInit {
   // lineChart
   public lineChartData: Array<any> = [
     {data: [], label: 'Temperatura zewnętrzna'},
+    {data: [], label: 'Temperatura wewnętrzna'},
+    // {data: [], label: 'Światło'},
   ];
   public lineChartLabels: Array<any> =  [];
   public lineChartOptions: any = {
     responsive: true
   };
   public lineChartColors: Array<any> = [
-    { // grey
+    { // temp zew
       backgroundColor: 'rgba(124, 200, 255,0.2)',
       borderColor: 'rgba(124, 200, 255,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      pointBackgroundColor: 'rgba(124, 200, 255,1)',
+      pointBorderColor: '#98caff',
+      pointHoverBackgroundColor: '#98caff',
+      pointHoverBorderColor: 'rgba(124, 200, 255,0.8)'
+    },
+    { // temp wew
+      backgroundColor: 'rgba(247, 96, 93,0.2)',
+      borderColor: 'rgba(247, 96, 93,1)',
+      pointBackgroundColor: 'rgba(247, 96, 93,1)',
+      pointBorderColor: '#ff6855',
+      pointHoverBackgroundColor: '#ff6855',
+      pointHoverBorderColor: 'rgba(247, 96, 93,0.8)'
+    },
+    { // światło
+      backgroundColor: 'rgba(247, 234, 93,0.2)',
+      borderColor: 'rgba(247, 234, 93,1)',
+      pointBackgroundColor: 'rgba(247, 234, 93,1)',
+      pointBorderColor: '#ffed59',
+      pointHoverBackgroundColor: '#ffed59',
+      pointHoverBorderColor: 'rgba(247, 234, 93,0.8)'
     }
   ];
   public lineChartLegend: boolean = true;
