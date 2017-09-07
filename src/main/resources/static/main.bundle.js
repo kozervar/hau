@@ -124,7 +124,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/temperature-chart/temperature-chart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div style=\"display: block;\">\n      <canvas baseChart height=\"50%\"\n              [datasets]=\"lineChartData\"\n              [labels]=\"lineChartLabels\"\n              [options]=\"lineChartOptions\"\n              [colors]=\"lineChartColors\"\n              [legend]=\"lineChartLegend\"\n              [chartType]=\"lineChartType\"\n              (chartHover)=\"chartHovered($event)\"\n              (chartClick)=\"chartClicked($event)\"></canvas>\n    </div>\n  </div>\n</div>\n<h3>{{temperatureRecords.length}}</h3>\n<div class=\"row\">\n  <div class=\"col-md-12\" style=\"margin-bottom: 10px\">\n    <table class=\"table table-responsive table-condensed\">\n      <tr>\n        <th *ngFor=\"let label of lineChartLabels\">{{label}}</th>\n      </tr>\n      <tr *ngFor=\"let d of lineChartData\">\n        <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n      </tr>\n    </table>\n    <!--<button (click)=\"randomize()\">CLICK</button>-->\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div class=\"header-panel\">\n      <h1>Temperatura powietrza</h1>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div style=\"display: block;\">\n      <canvas baseChart height=\"50%\"\n              [datasets]=\"lineChartData\"\n              [labels]=\"lineChartLabels\"\n              [options]=\"lineChartOptions\"\n              [colors]=\"lineChartColors\"\n              [legend]=\"lineChartLegend\"\n              [chartType]=\"lineChartType\"\n              (chartHover)=\"chartHovered($event)\"\n              (chartClick)=\"chartClicked($event)\"></canvas>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    Dzień miesiąca\n    <div class=\"btn-group\" data-toggle=\"buttons\">\n      <button *ngFor=\"let day of daysOfMonth\" class=\"btn btn-secondary active\" (click)=\"getTemperatureRecords(day)\">\n        {{day}}\n      </button>\n    </div>\n  </div>\n</div>\n<!--<div class=\"row\">\n  <div class=\"col-md-12\" style=\"margin-bottom: 10px\">\n    <table class=\"table table-responsive table-condensed\">\n      <tr>\n        <th *ngFor=\"let label of lineChartLabels\">{{label}}</th>\n      </tr>\n      <tr *ngFor=\"let d of lineChartData\">\n        <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n      </tr>\n    </table>\n    &lt;!&ndash;<button (click)=\"randomize()\">CLICK</button>&ndash;&gt;\n  </div>\n</div>-->\n"
 
 /***/ }),
 
@@ -178,9 +178,11 @@ var TemperatureChartComponent = (function () {
     function TemperatureChartComponent(http) {
         this.http = http;
         this.temperatureRecords = [];
+        this.daysOfMonth = [];
         // lineChart
         this.lineChartData = [
             { data: [], label: 'Temperatura zewnętrzna' },
+            { data: [], label: 'Temperatura wewnętrzna' },
         ];
         this.lineChartLabels = [];
         this.lineChartOptions = {
@@ -190,22 +192,40 @@ var TemperatureChartComponent = (function () {
             {
                 backgroundColor: 'rgba(124, 200, 255,0.2)',
                 borderColor: 'rgba(124, 200, 255,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                pointBackgroundColor: 'rgba(124, 200, 255,1)',
+                pointBorderColor: '#98caff',
+                pointHoverBackgroundColor: '#98caff',
+                pointHoverBorderColor: 'rgba(124, 200, 255,0.8)'
+            },
+            {
+                backgroundColor: 'rgba(247, 96, 93,0.2)',
+                borderColor: 'rgba(247, 96, 93,1)',
+                pointBackgroundColor: 'rgba(247, 96, 93,1)',
+                pointBorderColor: '#ff6855',
+                pointHoverBackgroundColor: '#ff6855',
+                pointHoverBorderColor: 'rgba(247, 96, 93,0.8)'
+            },
+            {
+                backgroundColor: 'rgba(247, 234, 93,0.2)',
+                borderColor: 'rgba(247, 234, 93,1)',
+                pointBackgroundColor: 'rgba(247, 234, 93,1)',
+                pointBorderColor: '#ffed59',
+                pointHoverBackgroundColor: '#ffed59',
+                pointHoverBorderColor: 'rgba(247, 234, 93,0.8)'
             }
         ];
         this.lineChartLegend = true;
         this.lineChartType = 'line';
+        var currDate = new Date();
+        this.daysOfMonth = Array.from({ length: currDate.getDate() }, function (v, k) { return k + 1; });
     }
     TemperatureChartComponent.prototype.ngOnInit = function () {
-        this.getTemperatureRecords();
+        var currDate = new Date();
+        this.getTemperatureRecords(currDate.getDate());
     };
-    TemperatureChartComponent.prototype.getTemperatureRecords = function () {
+    TemperatureChartComponent.prototype.getTemperatureRecords = function (day) {
         var _this = this;
-        var day = new Date().getDate();
-        this.http.get('http://itworkswell.pl:3000/temperature?fd=' + day)
+        this.http.get("http://itworkswell.pl:3000/temperature?fd=" + day + "&td=" + day)
             .subscribe(function (r) {
             _this.lineChartLabels.splice(0, _this.lineChartLabels.length);
             _this.lineChartData = [];
@@ -214,25 +234,36 @@ var TemperatureChartComponent = (function () {
                 var date = new Date(tr.creationTime);
                 var temp = new Temp();
                 temp.hour = date.getHours();
-                temp.temp = tr.outsideTemp;
+                temp.tempOut = tr.outsideTemp;
+                temp.tempIn = tr.insideTemp;
+                temp.light = tr.light;
                 return temp;
             });
-            var tempsData = [];
+            var insideTemp = [];
+            var outsideTemp = [];
+            var light = [];
             var _loop_1 = function (h) {
-                var temps = temperatures.filter(function (t) { return t.hour == h; }).map(function (t) { return t.temp; });
-                var maxTemp = temps.reduce(function (a, b) { return a + b; }, 0) / temps.length;
-                if (isNaN(maxTemp)) {
-                    maxTemp = 0;
-                }
-                maxTemp = Math.round(maxTemp);
-                console.log(maxTemp);
-                tempsData.push(maxTemp);
+                var outsideTemps = temperatures.filter(function (t) { return t.hour == h; }).map(function (t) { return t.tempOut; });
+                var insideTemps = temperatures.filter(function (t) { return t.hour == h; }).map(function (t) { return t.tempIn; });
+                var lights = temperatures.filter(function (t) { return t.hour == h; }).map(function (t) { return t.light / 10; });
+                var tin = outsideTemps.reduce(function (a, b) { return a + b; }, 0) / outsideTemps.length;
+                var tout = insideTemps.reduce(function (a, b) { return a + b; }, 0) / insideTemps.length;
+                var l = lights.reduce(function (a, b) { return a + b; }, 0) / lights.length;
+                tin = isNaN(tin) ? 0 : Math.round(tin);
+                tout = isNaN(tout) ? 0 : Math.round(tout);
+                l = isNaN(l) ? 0 : Math.round(l);
+                insideTemp.push(tin);
+                outsideTemp.push(tout);
+                light.push(l);
                 _this.lineChartLabels.push('G: ' + h);
             };
             for (var h = 0; h <= 23; h++) {
                 _loop_1(h);
             }
-            _this.lineChartData = [{ data: tempsData, label: 'Temperatura zewnętrzna' }];
+            _this.lineChartData = [
+                { data: insideTemp, label: 'Temperatura zewnętrzna' },
+                { data: outsideTemp, label: 'Temperatura wewnętrzna' },
+            ];
         });
     };
     TemperatureChartComponent.prototype.randomize = function () {
