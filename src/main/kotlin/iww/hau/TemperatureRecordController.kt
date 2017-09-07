@@ -13,6 +13,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/temperature")
+@CrossOrigin(origins = arrayOf("*"))
 class TemperatureRecordController(val repository: ReactiveTemperatureRecordRepository) {
 
     companion object : KLogging()
