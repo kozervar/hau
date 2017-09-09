@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <app-temperature-chart></app-temperature-chart>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <!--<app-temperature-chart></app-temperature-chart>-->\n  <app-current-temperature></app-current-temperature>\n</div>\n"
 
 /***/ }),
 
@@ -69,6 +69,16 @@ AppComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/app.constants.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SERVER_URL; });
+var SERVER_URL = 'http://itworkswell.pl:3000';
+//# sourceMappingURL=app.constants.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -82,12 +92,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__temperature_chart_temperature_chart_component__ = __webpack_require__("../../../../../src/app/temperature-chart/temperature-chart.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__current_temperature_current_temperature_component__ = __webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -104,7 +116,8 @@ AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__temperature_chart_temperature_chart_component__["a" /* TemperatureChartComponent */]
+            __WEBPACK_IMPORTED_MODULE_5__temperature_chart_temperature_chart_component__["a" /* TemperatureChartComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__current_temperature_current_temperature_component__["a" /* CurrentTemperatureComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -118,6 +131,149 @@ AppModule = __decorate([
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-temperature/current-temperature.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-12\">\n    <div class=\"header-panel text-center\">\n      <h2>Aktualna temperatura powietrza</h2>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-6\">\n    <div class=\"header-panel text-center\">\n      <h3>Wewnątrz pomieszczenia</h3>\n    </div>\n  </div>\n  <div class=\"col-6\">\n    <div class=\"header-panel text-center\">\n      <h3>Na zewnątrz pomieszczenia</h3>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-6\">\n    <div id=\"currentInsideTempChart\"></div>\n  </div>\n  <div class=\"col-6\">\n    <div id=\"currentOutsideTempChart\"></div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-temperature/current-temperature.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-temperature/current-temperature.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentTemperatureComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_c3__ = __webpack_require__("../../../../c3/c3.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_c3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_c3__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_constants__ = __webpack_require__("../../../../../src/app/app.constants.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CurrentTemperatureComponent = (function () {
+    function CurrentTemperatureComponent(http) {
+        this.http = http;
+    }
+    CurrentTemperatureComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.insideTempChart = __WEBPACK_IMPORTED_MODULE_1_c3__["generate"]({
+            bindto: '#currentInsideTempChart',
+            data: {
+                columns: [
+                    ['temp.', 0]
+                ],
+                type: 'gauge'
+            },
+            gauge: {
+                min: -10,
+                max: 30,
+                units: '°C',
+                label: {
+                    format: function (value, ratio) {
+                        return value + ' °C';
+                    },
+                    show: false // to turn off the min/max labels.
+                },
+            },
+            color: {
+                pattern: ['#3254b0', '#F9F7A4', '#F97600', '#FF0000'],
+                threshold: {
+                    unit: 'value',
+                    //            max: 200, // 100 is default
+                    values: [4, 15, 20, 25]
+                }
+            },
+        });
+        this.outsideTempChart = __WEBPACK_IMPORTED_MODULE_1_c3__["generate"]({
+            bindto: '#currentOutsideTempChart',
+            data: {
+                columns: [
+                    ['temp.', 0]
+                ],
+                type: 'gauge'
+            },
+            gauge: {
+                min: -10,
+                max: 30,
+                units: '°C',
+                label: {
+                    format: function (value, ratio) {
+                        return value + ' °C';
+                    },
+                    show: false // to turn off the min/max labels.
+                },
+            },
+            color: {
+                pattern: ['#3254b0', '#F9F7A4', '#F97600', '#FF0000'],
+                threshold: {
+                    unit: 'value',
+                    //            max: 200, // 100 is default
+                    values: [4, 15, 20, 25]
+                }
+            },
+        });
+        this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/temperature/current/inside")
+            .subscribe(function (response) {
+            _this.insideTempChart.load({
+                columns: [
+                    ['temp.', parseFloat(response.json()).toFixed(2)]
+                ],
+            });
+        });
+        this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/temperature/current/outside")
+            .subscribe(function (response) {
+            _this.outsideTempChart.load({
+                columns: [
+                    ['temp.', parseFloat(response.json()).toFixed(2)]
+                ],
+            });
+        });
+    };
+    return CurrentTemperatureComponent;
+}());
+CurrentTemperatureComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-current-temperature',
+        template: __webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], CurrentTemperatureComponent);
+
+var _a;
+//# sourceMappingURL=current-temperature.component.js.map
 
 /***/ }),
 
@@ -153,6 +309,7 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemperatureChartComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constants__ = __webpack_require__("../../../../../src/app/app.constants.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -162,6 +319,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var TemperatureRecord = (function () {
@@ -225,7 +383,7 @@ var TemperatureChartComponent = (function () {
     };
     TemperatureChartComponent.prototype.getTemperatureRecords = function (day) {
         var _this = this;
-        this.http.get("http://itworkswell.pl:3000/temperature?fd=" + day + "&td=" + day)
+        this.http.get(__WEBPACK_IMPORTED_MODULE_2__app_constants__["a" /* SERVER_URL */] + "/temperature?fd=" + day + "&td=" + day)
             .subscribe(function (r) {
             _this.lineChartLabels.splice(0, _this.lineChartLabels.length);
             _this.lineChartData = [];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { isUndefined } from "util";
+import {SERVER_URL} from "../app.constants";
 
 class TemperatureRecord {
   id: string;
@@ -40,7 +41,7 @@ export class TemperatureChartComponent implements OnInit {
   }
 
   public getTemperatureRecords(day:number) {
-    this.http.get(`http://itworkswell.pl:3000/temperature?fd=${day}&td=${day}`)
+    this.http.get(`${SERVER_URL}/temperature?fd=${day}&td=${day}`)
       .subscribe(r => {
         this.lineChartLabels.splice(0, this.lineChartLabels.length);
         this.lineChartData = [];

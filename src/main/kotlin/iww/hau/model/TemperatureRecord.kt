@@ -1,8 +1,10 @@
 package iww.hau.model
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
 import java.util.*
 
+@Document
 class TemperatureRecord {
 
     @Id
@@ -10,7 +12,7 @@ class TemperatureRecord {
 
     var deviceName: String = ""
 
-    var light: Int = 0
+    var light: Float = 0.0F
 
     var insideTemp: Float = 0.0F
 

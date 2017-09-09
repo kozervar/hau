@@ -10,7 +10,7 @@ class TemperatureRequest {
 
     var rssi:Int = 0
 
-    var light:Int = 0
+    var light:Float = 0.0F
 
     var insideTemp:Float = 0.0F
 

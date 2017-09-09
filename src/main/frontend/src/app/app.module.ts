@@ -6,11 +6,13 @@ import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { TemperatureChartComponent } from './temperature-chart/temperature-chart.component';
 import { HttpModule } from '@angular/http';
+import { CurrentTemperatureComponent } from './current-temperature/current-temperature.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemperatureChartComponent
+    TemperatureChartComponent,
+    CurrentTemperatureComponent
   ],
   imports: [
     BrowserModule,
