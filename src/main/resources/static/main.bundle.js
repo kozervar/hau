@@ -74,7 +74,7 @@ AppComponent = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SERVER_URL; });
-var SERVER_URL = 'http://localhost:3000';
+var SERVER_URL = 'http://itworkswell.pl:3000';
 //# sourceMappingURL=app.constants.js.map
 
 /***/ }),
