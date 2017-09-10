@@ -1,45 +1,39 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="header-panel">
-      <h1>Temperatura powietrza</h1>
-    </div>
+    <div class="h3">Temperatura powietrza</div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <div style="display: block;">
-      <canvas baseChart height="50%"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
+  <div class="col-md-4">
+    <div class="form-group row">
+      <label class="col-lg-1 col-form-label">Od</label>
+      <div class="col-lg-3 ">
+        <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onFromDateChanged($event)"
+                        [selDate]="selDateFrom"></my-date-picker>
+      </div>
+      <label class="col-lg-1 col-form-label">Do</label>
+      <div class="col-lg-3">
+        <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onToDateChanged($event)"
+                        [selDate]="selDateTo"></my-date-picker>
+      </div>
+      <div class="col-lg-2">
+        <div class="btn-group" dropdown>
+          <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+            {{getIntervalTranslation()}} <span class="caret"></span>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem"><a class="dropdown-item" href="#" (click)="setInterval('MONTH')">Miesiąc</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" (click)="setInterval('DAY')">Dzień</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" (click)="setInterval('HOUR')">Godzina</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <button class="btn btn-primary" (click)="reloadData()">Pokaż</button>
+      </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    Dzień miesiąca
-    <div class="btn-group" data-toggle="buttons">
-      <button *ngFor="let day of daysOfMonth" class="btn btn-secondary active" (click)="getTemperatureRecords(day)">
-        {{day}}
-      </button>
-    </div>
+  <div class="col-md-8">
+    <div id="tempChart"></div>
   </div>
 </div>
-<!--<div class="row">
-  <div class="col-md-12" style="margin-bottom: 10px">
-    <table class="table table-responsive table-condensed">
-      <tr>
-        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-      </tr>
-      <tr *ngFor="let d of lineChartData">
-        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-      </tr>
-    </table>
-    &lt;!&ndash;<button (click)="randomize()">CLICK</button>&ndash;&gt;
-  </div>
-</div>-->

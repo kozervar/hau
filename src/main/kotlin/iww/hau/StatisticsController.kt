@@ -4,6 +4,7 @@ import iww.hau.model.TemperatureRecord
 import iww.hau.model.TemperatureRequest
 import iww.hau.repository.ReactiveTemperatureRecordRepository
 import mu.KLogging
+import org.apache.commons.math3.stat.descriptive.moment.Mean
 import org.apache.commons.math3.stat.descriptive.rank.Median
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
@@ -111,8 +112,8 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
                 if (fYear > 0) fYear else now.year,
                 if (fMonth > 0) fMonth else now.monthValue,
                 if (fDay > 0) fDay else now.dayOfMonth,
-                if (fHour > 0) fHour else now.hour,
-                if (fMinute > 0) fMinute else now.minute,
+                if (fHour > -1) fHour else now.hour,
+                if (fMinute > -1) fMinute else now.minute,
                 0
         )
         val fromDate = Date.from(fromLocalDateTime.atZone(ZoneId.systemDefault()).toInstant())
@@ -121,8 +122,8 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
                 if (tYear > 0) tYear else now.year,
                 if (tMonth > 0) tMonth else now.monthValue,
                 if (tDay > 0) tDay else now.dayOfMonth,
-                if (tHour > 0) tHour else 23,
-                if (tMinute > 0) tMinute else 59,
+                if (tHour > -1) tHour else 23,
+                if (tMinute > -1) tMinute else 59,
                 59
         )
         val toDate = Date.from(toLocalDate.atZone(ZoneId.systemDefault()).toInstant())
@@ -140,7 +141,7 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
                                tYear: Int,
                                tHour: Int,
                                tMinute: Int,
-                               mapFunction: Function<in TemperatureRecord, out Any>,
+                               mapFunction: Function<in TemperatureRecord, out Float>,
                                interval: Interval): List<RecordDTTuple> {
         val now = LocalDateTime.now()
 
@@ -148,8 +149,8 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
                 if (fYear > 0) fYear else now.year,
                 if (fMonth > 0) fMonth else now.monthValue,
                 if (fDay > 0) fDay else now.dayOfMonth,
-                if (fHour > 0) fHour else now.hour,
-                if (fMinute > 0) fMinute else now.minute,
+                if (fHour > -1) fHour else now.hour,
+                if (fMinute > -1) fMinute else now.minute,
                 0
         )
         val fromDate = Date.from(fromLocalDateTime.atZone(ZoneId.systemDefault()).toInstant())
@@ -158,33 +159,36 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
                 if (tYear > 0) tYear else now.year,
                 if (tMonth > 0) tMonth else now.monthValue,
                 if (tDay > 0) tDay else now.dayOfMonth,
-                if (tHour > 0) tHour else 23,
-                if (tMinute > 0) tMinute else 59,
+                if (tHour > -1) tHour else 23,
+                if (tMinute > -1) tMinute else 59,
                 59
         )
         val toDate = Date.from(toLocalDate.atZone(ZoneId.systemDefault()).toInstant())
 
         val listOfDTTouples = repository
                 .findByCreationTimeBetweenOrderByCreationTimeAsc(fromDate, toDate)
-                .map { tr -> RecordDTTuple(toLocalDateTime(tr.creationTime), tr.outsideTemp) }
+                .map { tr -> RecordDTTuple(toLocalDateTime(tr.creationTime), mapFunction.apply(tr)) }
                 .toStream().toList()
 
-        var chronoField = ChronoField.MINUTE_OF_DAY
-
-        when (interval) {
-            Interval.YEAR -> chronoField = ChronoField.YEAR
-            Interval.MONTH -> chronoField = ChronoField.MONTH_OF_YEAR
-            Interval.DAY -> chronoField = ChronoField.DAY_OF_MONTH
-            Interval.HOUR -> chronoField = ChronoField.HOUR_OF_DAY
-            Interval.MINUTE -> chronoField = ChronoField.MINUTE_OF_HOUR
-        }
-
         return listOfDTTouples
-                .groupBy { recordDTTuple: RecordDTTuple? -> recordDTTuple!!.dateTime.get(chronoField) }
-                .map { entry: Map.Entry<Int, List<RecordDTTuple>> -> mapToRecordTuple(entry, interval) }
+                .groupBy { recordDTTuple: RecordDTTuple -> groupBy(recordDTTuple, interval) }
+                .map { entry: Map.Entry<String, List<RecordDTTuple>> -> mapToRecordTuple(entry, interval) }
     }
 
-    private fun mapToRecordTuple(entry: Map.Entry<Int, List<RecordDTTuple>>, interval: Interval): RecordDTTuple {
+    private fun groupBy(recordDTTuple: RecordDTTuple, interval: Interval): String {
+        val dt = recordDTTuple.dateTime
+        var result = ""
+        when (interval) {
+            Interval.YEAR -> result = result + dt.year + ":" + dt.get(ChronoField.YEAR)
+            Interval.MONTH -> result = result + dt.monthValue + "." + dt.year + ":" + dt.get(ChronoField.MONTH_OF_YEAR)
+            Interval.DAY -> result = result + dt.dayOfMonth + "." + dt.monthValue + "." + dt.year + ":" + dt.get(ChronoField.DAY_OF_MONTH)
+            Interval.HOUR -> result = result + dt.dayOfMonth + "." + dt.monthValue + "." + dt.year + ":" + dt.get(ChronoField.HOUR_OF_DAY)
+            Interval.MINUTE -> result = result + dt.dayOfMonth + "." + dt.monthValue + "." + dt.year + ":" + dt.get(ChronoField.MINUTE_OF_DAY)
+        }
+        return result
+    }
+
+    private fun mapToRecordTuple(entry: Map.Entry<String, List<RecordDTTuple>>, interval: Interval): RecordDTTuple {
 
         var dateTime = entry.value.first().dateTime
 
@@ -196,7 +200,7 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
             Interval.MINUTE -> dateTime = dateTime.withSecond(0).withNano(0)
         }
 
-        val median = getMedianFromDoubleArray(entry.value.map { e -> e.value.toDouble() }.toDoubleArray())
+        val median = getAvarageFromDoubleArray(entry.value.map { e -> e.value.toDouble() }.toDoubleArray())
         return RecordDTTuple(dateTime, median.toFloat())
     }
 
@@ -266,7 +270,14 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
 
     private fun getMedianFromDoubleArray(arr: DoubleArray?): Double {
         val median = Median()
+        Mean()
         val value = median.evaluate(arr)
+        return value
+    }
+
+    private fun getAvarageFromDoubleArray(arr: DoubleArray?): Double {
+        val mean = Mean()
+        val value = mean.evaluate(arr)
         return value
     }
 }

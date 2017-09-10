@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <!--<app-temperature-chart></app-temperature-chart>-->\n  <app-current-temperature></app-current-temperature>\n  <app-current-light></app-current-light>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <app-temperature-chart></app-temperature-chart>\n  <app-current-temperature></app-current-temperature>\n  <app-current-light></app-current-light>\n</div>\n"
 
 /***/ }),
 
@@ -58,7 +58,7 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 AppComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
@@ -74,7 +74,7 @@ AppComponent = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SERVER_URL; });
-var SERVER_URL = 'http://itworkswell.pl:3000';
+var SERVER_URL = 'http://localhost:3000';
 //# sourceMappingURL=app.constants.js.map
 
 /***/ }),
@@ -87,13 +87,12 @@ var SERVER_URL = 'http://itworkswell.pl:3000';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_bootstrap_dropdown__ = __webpack_require__("../../../../ngx-bootstrap/dropdown/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_charts__ = __webpack_require__("../../../../ng2-charts/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__temperature_chart_temperature_chart_component__ = __webpack_require__("../../../../../src/app/temperature-chart/temperature-chart.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__current_temperature_current_temperature_component__ = __webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__current_light_current_light_component__ = __webpack_require__("../../../../../src/app/current-light/current-light.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__temperature_chart_temperature_chart_component__ = __webpack_require__("../../../../../src/app/temperature-chart/temperature-chart.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__current_temperature_current_temperature_component__ = __webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__current_light_current_light_component__ = __webpack_require__("../../../../../src/app/current-light/current-light.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mydatepicker__ = __webpack_require__("../../../../mydatepicker/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -115,21 +114,21 @@ var AppModule = (function () {
     return AppModule;
 }());
 AppModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__temperature_chart_temperature_chart_component__["a" /* TemperatureChartComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__current_temperature_current_temperature_component__["a" /* CurrentTemperatureComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__current_light_current_light_component__["a" /* CurrentLightComponent */]
+            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_4__temperature_chart_temperature_chart_component__["a" /* TemperatureChartComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__current_temperature_current_temperature_component__["a" /* CurrentTemperatureComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__current_light_current_light_component__["a" /* CurrentLightComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_2_ngx_bootstrap_dropdown__["a" /* BsDropdownModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_3_ng2_charts__["ChartsModule"]
+            __WEBPACK_IMPORTED_MODULE_8_mydatepicker__["MyDatePickerModule"]
         ],
         providers: [],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -237,11 +236,11 @@ var CurrentLightComponent = (function () {
     return CurrentLightComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Number)
 ], CurrentLightComponent.prototype, "refreshInterval", void 0);
 CurrentLightComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-current-light',
         template: __webpack_require__("../../../../../src/app/current-light/current-light.component.html"),
         styles: [__webpack_require__("../../../../../src/app/current-light/current-light.component.scss")]
@@ -369,11 +368,11 @@ var CurrentTemperatureComponent = (function () {
     return CurrentTemperatureComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Number)
 ], CurrentTemperatureComponent.prototype, "refreshInterval", void 0);
 CurrentTemperatureComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-current-temperature',
         template: __webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.html"),
         styles: [__webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.scss")]
@@ -389,7 +388,7 @@ var _a;
 /***/ "../../../../../src/app/temperature-chart/temperature-chart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div class=\"header-panel\">\n      <h1>Temperatura powietrza</h1>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div style=\"display: block;\">\n      <canvas baseChart height=\"50%\"\n              [datasets]=\"lineChartData\"\n              [labels]=\"lineChartLabels\"\n              [options]=\"lineChartOptions\"\n              [colors]=\"lineChartColors\"\n              [legend]=\"lineChartLegend\"\n              [chartType]=\"lineChartType\"\n              (chartHover)=\"chartHovered($event)\"\n              (chartClick)=\"chartClicked($event)\"></canvas>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    Dzień miesiąca\n    <div class=\"btn-group\" data-toggle=\"buttons\">\n      <button *ngFor=\"let day of daysOfMonth\" class=\"btn btn-secondary active\" (click)=\"getTemperatureRecords(day)\">\n        {{day}}\n      </button>\n    </div>\n  </div>\n</div>\n<!--<div class=\"row\">\n  <div class=\"col-md-12\" style=\"margin-bottom: 10px\">\n    <table class=\"table table-responsive table-condensed\">\n      <tr>\n        <th *ngFor=\"let label of lineChartLabels\">{{label}}</th>\n      </tr>\n      <tr *ngFor=\"let d of lineChartData\">\n        <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n      </tr>\n    </table>\n    &lt;!&ndash;<button (click)=\"randomize()\">CLICK</button>&ndash;&gt;\n  </div>\n</div>-->\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div class=\"h3\">Temperatura powietrza</div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-4\">\n    <div class=\"form-group row\">\n      <label class=\"col-lg-1 col-form-label\">Od</label>\n      <div class=\"col-lg-3 \">\n        <my-date-picker [options]=\"myDatePickerOptions\" (dateChanged)=\"onFromDateChanged($event)\"\n                        [selDate]=\"selDateFrom\"></my-date-picker>\n      </div>\n      <label class=\"col-lg-1 col-form-label\">Do</label>\n      <div class=\"col-lg-3\">\n        <my-date-picker [options]=\"myDatePickerOptions\" (dateChanged)=\"onToDateChanged($event)\"\n                        [selDate]=\"selDateTo\"></my-date-picker>\n      </div>\n      <div class=\"col-lg-2\">\n        <div class=\"btn-group\" dropdown>\n          <button dropdownToggle type=\"button\" class=\"btn btn-primary dropdown-toggle\">\n            {{getIntervalTranslation()}} <span class=\"caret\"></span>\n          </button>\n          <ul *dropdownMenu class=\"dropdown-menu\" role=\"menu\">\n            <li role=\"menuitem\"><a class=\"dropdown-item\" href=\"#\" (click)=\"setInterval('MONTH')\">Miesiąc</a></li>\n            <li role=\"menuitem\"><a class=\"dropdown-item\" href=\"#\" (click)=\"setInterval('DAY')\">Dzień</a></li>\n            <li role=\"menuitem\"><a class=\"dropdown-item\" href=\"#\" (click)=\"setInterval('HOUR')\">Godzina</a></li>\n          </ul>\n        </div>\n      </div>\n      <div class=\"col-lg-2\">\n        <button class=\"btn btn-primary\" (click)=\"reloadData()\">Pokaż</button>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-md-8\">\n    <div id=\"tempChart\"></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -418,7 +417,17 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemperatureChartComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constants__ = __webpack_require__("../../../../../src/app/app.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_c3__ = __webpack_require__("../../../../c3/c3.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_c3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_c3__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__("../../../../moment/moment.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_constants__ = __webpack_require__("../../../../../src/app/app.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_forkJoin__ = __webpack_require__("../../../../rxjs/add/observable/forkJoin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_forkJoin__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -431,129 +440,152 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TemperatureRecord = (function () {
-    function TemperatureRecord() {
+
+
+
+
+
+var Temperature = (function () {
+    function Temperature() {
     }
-    return TemperatureRecord;
-}());
-var Temp = (function () {
-    function Temp() {
-    }
-    return Temp;
+    return Temperature;
 }());
 var TemperatureChartComponent = (function () {
     function TemperatureChartComponent(http) {
         this.http = http;
         this.temperatureRecords = [];
-        this.daysOfMonth = [];
-        // lineChart
-        this.lineChartData = [
-            { data: [], label: 'Temperatura zewnętrzna' },
-            { data: [], label: 'Temperatura wewnętrzna' },
-        ];
-        this.lineChartLabels = [];
-        this.lineChartOptions = {
-            responsive: true
+        this.myDatePickerOptions = {
+            dateFormat: 'dd.mm.yyyy',
         };
-        this.lineChartColors = [
-            {
-                backgroundColor: 'rgba(124, 200, 255,0.2)',
-                borderColor: 'rgba(124, 200, 255,1)',
-                pointBackgroundColor: 'rgba(124, 200, 255,1)',
-                pointBorderColor: '#98caff',
-                pointHoverBackgroundColor: '#98caff',
-                pointHoverBorderColor: 'rgba(124, 200, 255,0.8)'
-            },
-            {
-                backgroundColor: 'rgba(247, 96, 93,0.2)',
-                borderColor: 'rgba(247, 96, 93,1)',
-                pointBackgroundColor: 'rgba(247, 96, 93,1)',
-                pointBorderColor: '#ff6855',
-                pointHoverBackgroundColor: '#ff6855',
-                pointHoverBorderColor: 'rgba(247, 96, 93,0.8)'
-            },
-            {
-                backgroundColor: 'rgba(247, 234, 93,0.2)',
-                borderColor: 'rgba(247, 234, 93,1)',
-                pointBackgroundColor: 'rgba(247, 234, 93,1)',
-                pointBorderColor: '#ffed59',
-                pointHoverBackgroundColor: '#ffed59',
-                pointHoverBorderColor: 'rgba(247, 234, 93,0.8)'
-            }
-        ];
-        this.lineChartLegend = true;
-        this.lineChartType = 'line';
-        var currDate = new Date();
-        this.daysOfMonth = Array.from({ length: currDate.getDate() }, function (v, k) { return k + 1; });
+        this.selDateFrom = { year: 0, month: 0, day: 0 };
+        this.selDateTo = { year: 0, month: 0, day: 0 };
+        this.interval = 'HOUR';
+        this.selDateTo = this.getIMyDateFromMoment(__WEBPACK_IMPORTED_MODULE_3_moment__());
+        this.selDateFrom = this.getIMyDateFromMoment(__WEBPACK_IMPORTED_MODULE_3_moment__().subtract(1, 'days'));
+        this.myDatePickerOptions.disableSince = this.getIMyDateFromMoment(__WEBPACK_IMPORTED_MODULE_3_moment__().add(1, 'days'));
+        this.myDatePickerOptions.disableUntil = this.getIMyDateFromMoment(__WEBPACK_IMPORTED_MODULE_3_moment__().subtract(8, 'days'));
     }
     TemperatureChartComponent.prototype.ngOnInit = function () {
-        var currDate = new Date();
-        this.getTemperatureRecords(currDate.getDate());
-    };
-    TemperatureChartComponent.prototype.getTemperatureRecords = function (day) {
         var _this = this;
-        this.http.get(__WEBPACK_IMPORTED_MODULE_2__app_constants__["a" /* SERVER_URL */] + "/temperature?fd=" + day + "&td=" + day)
-            .subscribe(function (r) {
-            _this.lineChartLabels.splice(0, _this.lineChartLabels.length);
-            _this.lineChartData = [];
-            _this.temperatureRecords = r.json();
-            var temperatures = _this.temperatureRecords.map(function (tr) {
-                var date = new Date(tr.creationTime);
-                var temp = new Temp();
-                temp.hour = date.getHours();
-                temp.tempOut = tr.outsideTemp;
-                temp.tempIn = tr.insideTemp;
-                temp.light = tr.light;
-                return temp;
+        var currDate = new Date();
+        this.temperatureChart = __WEBPACK_IMPORTED_MODULE_2_c3__["generate"]({
+            bindto: '#tempChart',
+            data: {
+                x: 'date',
+                columns: [
+                    ['date'],
+                    ['inside'],
+                    ['outside']
+                ],
+                types: {
+                    inside: 'area-spline',
+                    outside: 'area-spline'
+                },
+                names: {
+                    inside: 'wewnętrzna',
+                    outside: 'zewnętrzna'
+                }
+            },
+            axis: {
+                x: {
+                    label: 'Godzina',
+                    type: 'timeseries',
+                    tick: {
+                        format: function (x) {
+                            if (_this.interval == 'HOUR' || _this.interval == 'MINUTE')
+                                return __WEBPACK_IMPORTED_MODULE_3_moment__(x).format('DD.MM.YYYY HH:mm');
+                            else
+                                return __WEBPACK_IMPORTED_MODULE_3_moment__(x).format('DD.MM.YYYY');
+                        }
+                    }
+                },
+                y: {
+                    label: 'Temperatura',
+                    tick: {
+                        format: function (x) {
+                            return x + " \u00B0C";
+                        }
+                    }
+                }
+            },
+            grid: {
+                x: {
+                    show: true
+                },
+                y: {
+                    show: true
+                }
+            },
+        });
+        this.getTemperatureData();
+    };
+    TemperatureChartComponent.prototype.setInterval = function (str) {
+        this.interval = str;
+    };
+    TemperatureChartComponent.prototype.getIntervalTranslation = function () {
+        switch (this.interval) {
+            case 'MONTH': return 'Miesiąc';
+            case 'DAY': return 'Dzień';
+            case 'HOUR': return 'Godzina';
+            default: return 'Godzina';
+        }
+    };
+    TemperatureChartComponent.prototype.onFromDateChanged = function (event) {
+        this.selDateFrom = event.date;
+        console.log(event);
+    };
+    TemperatureChartComponent.prototype.onToDateChanged = function (event) {
+        this.selDateTo = event.date;
+        console.log(event);
+    };
+    TemperatureChartComponent.prototype.reloadData = function () {
+        console.log('From ', this.selDateFrom, ' to ', this.selDateTo);
+        this.getTemperatureData();
+    };
+    TemperatureChartComponent.prototype.getTemperatureData = function () {
+        var _this = this;
+        var filter = "?fy=" + this.selDateFrom.year + "&fm=" + this.selDateFrom.month + "&fd=" + this.selDateFrom.day +
+            ("&ty=" + this.selDateTo.year + "&tm=" + this.selDateTo.month + "&td=" + this.selDateTo.day) +
+            ("&fh=0&interval=" + this.interval);
+        var outsideTemps = this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_constants__["a" /* SERVER_URL */] + "/temperature/outside" + filter).map(function (res) {
+            var resp = res.json();
+            resp.forEach(function (t) { return t.date = new Date(t.dateTime); });
+            return resp;
+        });
+        var insideTemps = this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_constants__["a" /* SERVER_URL */] + "/temperature/inside" + filter).map(function (res) {
+            var resp = res.json();
+            resp.forEach(function (t) { return t.date = new Date(t.dateTime); });
+            return resp;
+        });
+        __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].forkJoin([outsideTemps, insideTemps]).subscribe(function (results) {
+            var outside = results[0];
+            var inside = results[1];
+            var dates = ['date'].concat(outside.map(function (t) { return t.date; }));
+            var outsideTemps = ['outside'].concat(outside.map(function (t) { return t.value; }));
+            var insideTemps = ['inside'].concat(inside.map(function (t) { return t.value; }));
+            _this.temperatureChart.load({
+                columns: [
+                    dates,
+                    outsideTemps,
+                    insideTemps
+                ]
             });
-            var insideTemp = [];
-            var outsideTemp = [];
-            var light = [];
-            var _loop_1 = function (h) {
-                var outsideTemps = temperatures.filter(function (t) { return t.hour == h; }).map(function (t) { return t.tempOut; });
-                var insideTemps = temperatures.filter(function (t) { return t.hour == h; }).map(function (t) { return t.tempIn; });
-                var lights = temperatures.filter(function (t) { return t.hour == h; }).map(function (t) { return t.light / 10; });
-                var tin = outsideTemps.reduce(function (a, b) { return a + b; }, 0) / outsideTemps.length;
-                var tout = insideTemps.reduce(function (a, b) { return a + b; }, 0) / insideTemps.length;
-                var l = lights.reduce(function (a, b) { return a + b; }, 0) / lights.length;
-                tin = isNaN(tin) ? 0 : Math.round(tin);
-                tout = isNaN(tout) ? 0 : Math.round(tout);
-                l = isNaN(l) ? 0 : Math.round(l);
-                insideTemp.push(tin);
-                outsideTemp.push(tout);
-                light.push(l);
-                _this.lineChartLabels.push('G: ' + h);
-            };
-            for (var h = 0; h <= 23; h++) {
-                _loop_1(h);
-            }
-            _this.lineChartData = [
-                { data: insideTemp, label: 'Temperatura zewnętrzna' },
-                { data: outsideTemp, label: 'Temperatura wewnętrzna' },
-            ];
         });
     };
-    TemperatureChartComponent.prototype.randomize = function () {
-        var _lineChartData = new Array(this.lineChartData.length);
-        for (var i = 0; i < this.lineChartData.length; i++) {
-            _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-            for (var j = 0; j < this.lineChartData[i].data.length; j++) {
-                _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-            }
-        }
-        this.lineChartData = _lineChartData;
+    TemperatureChartComponent.prototype.getCopyOfDatePickerOptions = function () {
+        return JSON.parse(JSON.stringify(this.myDatePickerOptions));
     };
-    // events
-    TemperatureChartComponent.prototype.chartClicked = function (e) {
-        console.log(e);
-    };
-    TemperatureChartComponent.prototype.chartHovered = function (e) {
-        console.log(e);
+    TemperatureChartComponent.prototype.getIMyDateFromMoment = function (date) {
+        return {
+            year: date.year(),
+            month: date.month() + 1,
+            day: date.date()
+        };
     };
     return TemperatureChartComponent;
 }());
 TemperatureChartComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-temperature-chart',
         template: __webpack_require__("../../../../../src/app/temperature-chart/temperature-chart.component.html"),
         styles: [__webpack_require__("../../../../../src/app/temperature-chart/temperature-chart.component.scss")]
@@ -597,7 +629,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
