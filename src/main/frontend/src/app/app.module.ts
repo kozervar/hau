@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { TemperatureChartComponent } from './temperature-chart/temperature-chart.component';
 import { HttpModule } from '@angular/http';
 import { CurrentTemperatureComponent } from './current-temperature/current-temperature.component';
+import { CurrentLightComponent } from './current-light/current-light.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemperatureChartComponent,
-    CurrentTemperatureComponent
+    CurrentTemperatureComponent,
+    CurrentLightComponent
   ],
   imports: [
     BrowserModule,
