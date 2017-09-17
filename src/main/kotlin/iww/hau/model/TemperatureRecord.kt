@@ -18,6 +18,10 @@ class TemperatureRecord {
 
     var outsideTemp: Float = 0.0F
 
+    var humidity:Float = 0.0F
+
+    var pressure:Float = 0.0F
+
     var ipAddress: String = ""
 
     var sid: String = ""
@@ -27,7 +31,7 @@ class TemperatureRecord {
     var creationTime: Date = Date()
 
     override fun toString(): String {
-        return "TemperatureRecord(id='$id', deviceName='$deviceName', light=$light, insideTemp=$insideTemp, outsideTemp=$outsideTemp, ipAddress='$ipAddress', sid='$sid', rssi=$rssi, creationTime=$creationTime)"
+        return "TemperatureRecord(id='$id', deviceName='$deviceName', light=$light, insideTemp=$insideTemp, outsideTemp=$outsideTemp, humidity=$humidity, pressure=$pressure, ipAddress='$ipAddress', sid='$sid', rssi=$rssi, creationTime=$creationTime)"
     }
 
 }

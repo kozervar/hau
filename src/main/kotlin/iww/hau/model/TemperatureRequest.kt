@@ -16,9 +16,12 @@ class TemperatureRequest {
 
     var outsideTemp:Float = 0.0F
 
-    override fun toString(): String {
-        return "TemperatureRequest(deviceName='$deviceName', ipAddress='$ipAddress', sid='$sid', rssi=$rssi, light=$light, insideTemp=$insideTemp, outsideTemp=$outsideTemp)"
-    }
+    var humidity:Float = 0.0F
 
+    var pressure:Float = 0.0F
+
+    override fun toString(): String {
+        return "TemperatureRequest(deviceName='$deviceName', ipAddress='$ipAddress', sid='$sid', rssi=$rssi, light=$light, insideTemp=$insideTemp, outsideTemp=$outsideTemp, humidity=$humidity, pressure=$pressure)"
+    }
 
 }

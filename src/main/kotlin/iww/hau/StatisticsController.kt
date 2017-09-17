@@ -237,6 +237,28 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
         return getMedianFromTo(from, to, { temperatureRecord -> temperatureRecord.light })
     }
 
+    @GetMapping("/pressure/current")
+    fun getCurrentPressure(): Double {
+
+        var from = LocalDateTime.now()
+        from = from.minusMinutes(1)
+
+        val to = LocalDateTime.now()
+
+        return getMedianFromTo(from, to, { temperatureRecord -> temperatureRecord.pressure })
+    }
+
+    @GetMapping("/humidity/current")
+    fun getCurrentHumidity(): Double {
+
+        var from = LocalDateTime.now()
+        from = from.minusMinutes(1)
+
+        val to = LocalDateTime.now()
+
+        return getMedianFromTo(from, to, { temperatureRecord -> temperatureRecord.humidity })
+    }
+
     private fun mapToRecord(temperatureReq: TemperatureRequest): TemperatureRecord {
         val temperatureRecord = TemperatureRecord()
         temperatureRecord.ipAddress = temperatureReq.ipAddress
@@ -245,6 +267,8 @@ class StatisticsController(val repository: ReactiveTemperatureRecordRepository) 
         temperatureRecord.light = temperatureReq.light
         temperatureRecord.insideTemp = temperatureReq.insideTemp
         temperatureRecord.outsideTemp = temperatureReq.outsideTemp
+        temperatureRecord.pressure = temperatureReq.pressure
+        temperatureRecord.humidity = temperatureReq.humidity
         return temperatureRecord
     }
 
