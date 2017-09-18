@@ -1,5 +1,6 @@
 @import 'variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/font-awesome/css/font-awesome.css';
 @import '../node_modules/c3/c3.css';
 //@import "cover";
 @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -13,4 +14,74 @@ html {
 }
 .c3-region.regionDay {
   fill: yellow;
+}
+
+
+.date-time-container {
+  margin-top: 1em;
+}
+
+.tile {
+  min-height: 8em;
+  border-radius: 25px;
+  margin: 1em;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+  .tile-info {
+    font-size: 1em;
+    padding: 0.5em;
+    font-weight: bold;
+  }
+  .value {
+    color: #ffffff;
+    font-size: 2.6em;
+    font-weight: bold;
+  }
+  .value-md {
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+}
+
+.inside {
+  background-color: #ffa300;
+  &:hover {
+    background-color: #C67E00;
+  }
+}
+.outside {
+  background-color: #2D7AA8;
+  &:hover {
+    background-color: #07527E;
+  }
+}
+.pressure {
+  background-color: #4F92BA;
+  &:hover {
+    background-color: #084780;
+  }
+}
+.humidity {
+  background-color: #298DA4;
+  &:hover {
+    background-color: #04819E;
+  }
+}
+.sun {
+  background-color: #FF8739;
+  &:hover {
+    background-color: #FF6400;
+  }
+}
+.moon {
+  color: #ffffff;
+  background-color: #072C67;
+  &:hover {
+    background-color: #0B3983;
+  }
 }

@@ -1,0 +1,118 @@
+<div class="container-fluid">
+  <div class="row justify-content-center date-time-container">
+    <div class="col-lg-12 text-center">
+      <div class="h3">{{currentHour | date: 'HH : mm : ss'}} &nbsp;&nbsp; {{currentDate}}</div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-2 tile inside">
+      <div class="row justify-content-center">
+        <div class="col-12 tile-info text-center">
+          TEMPERATURA W BUDYNKU
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-4">
+          <i class="fa fa-4x fa-thermometer-full"></i>
+        </div>
+        <div class="col-8 text-center">
+          <div class="value">{{insideTemp}} &deg;C</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 tile outside">
+      <div class="row justify-content-center">
+        <div class="col-12 tile-info text-center">
+          TEMPERATURA NA ZEWNĄTRZ
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-4">
+          <i class="fa fa-4x fa-thermometer-2"></i>
+        </div>
+        <div class="col-8 text-center">
+          <div class="value">{{outsideTemp}} &deg;C</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 tile pressure">
+      <div class="row justify-content-center">
+        <div class="col-12 tile-info text-center">
+          CIŚNIENIE ATMOSFERYCZNE
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-4">
+          <i class="fa fa-4x fa-sort-amount-desc"></i>
+        </div>
+        <div class="col-8 text-center">
+          <div class="value">{{pressure}} hPa</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 tile humidity">
+      <div class="row justify-content-center">
+        <div class="col-12 tile-info text-center">
+          WILGOTNOŚĆ
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-4">
+          <i class="fa fa-4x fa-tint"></i>
+        </div>
+        <div class="col-8 text-center value">
+          {{humidity}} %
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 tile" [ngClass]="{'sun': light > 40, 'moon': light <= 40}">
+      <div class="row justify-content-center">
+        <div class="col-12 tile-info text-center">
+          NAŚWIETLENIE
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-4">
+          <i class="fa fa-4x" [ngClass]="{'fa-sun-o': light > 40, 'fa-moon-o': light <= 40}"></i>
+        </div>
+        <div class="col-8 text-center value">
+          {{light}} %
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 d-lg-block d-none tile sun">
+      <div class="row justify-content-center">
+        <div class="col-12 tile-info text-center">
+          WSCHÓD I ZACHÓD SŁOŃCA
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-6 text-center value-md">
+          <i class="fa fa-sun-o"></i> {{sunriseSunset.sunrise}}
+        </div>
+        <div class="col-6 text-center value-md">
+          <i class="fa fa-moon-o"></i> {{sunriseSunset.sunset}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-sm-12 d-lg-none tile sun">
+      <div class="row justify-content-center">
+        <div class="col-12 tile-info text-center">
+          WSCHÓD I ZACHÓD SŁOŃCA
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 text-center value-md">
+          <i class="fa fa-sun-o"></i> {{sunriseSunset.sunrise}}
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 text-center value-md">
+          <i class="fa fa-moon-o"></i> {{sunriseSunset.sunset}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

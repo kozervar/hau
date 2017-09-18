@@ -13,10 +13,147 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 /***/ }),
 
+/***/ "../../../../../src/app/all-parameter-tiles/all-parameter-tiles.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row justify-content-center date-time-container\">\n    <div class=\"col-lg-12 text-center\">\n      <div class=\"h3\">{{currentHour | date: 'HH : mm : ss'}} &nbsp;&nbsp; {{currentDate}}</div>\n    </div>\n  </div>\n  <div class=\"row justify-content-center\">\n    <div class=\"col-lg-2 tile inside\">\n      <div class=\"row justify-content-center\">\n        <div class=\"col-12 tile-info text-center\">\n          TEMPERATURA W BUDYNKU\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-4\">\n          <i class=\"fa fa-4x fa-thermometer-full\"></i>\n        </div>\n        <div class=\"col-8 text-center\">\n          <div class=\"value\">{{insideTemp}} &deg;C</div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-2 tile outside\">\n      <div class=\"row justify-content-center\">\n        <div class=\"col-12 tile-info text-center\">\n          TEMPERATURA NA ZEWNĄTRZ\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-4\">\n          <i class=\"fa fa-4x fa-thermometer-2\"></i>\n        </div>\n        <div class=\"col-8 text-center\">\n          <div class=\"value\">{{outsideTemp}} &deg;C</div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-2 tile pressure\">\n      <div class=\"row justify-content-center\">\n        <div class=\"col-12 tile-info text-center\">\n          CIŚNIENIE ATMOSFERYCZNE\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-4\">\n          <i class=\"fa fa-4x fa-sort-amount-desc\"></i>\n        </div>\n        <div class=\"col-8 text-center\">\n          <div class=\"value\">{{pressure}} hPa</div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-2 tile humidity\">\n      <div class=\"row justify-content-center\">\n        <div class=\"col-12 tile-info text-center\">\n          WILGOTNOŚĆ\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-4\">\n          <i class=\"fa fa-4x fa-tint\"></i>\n        </div>\n        <div class=\"col-8 text-center value\">\n          {{humidity}} %\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-2 tile\" [ngClass]=\"{'sun': light > 40, 'moon': light <= 40}\">\n      <div class=\"row justify-content-center\">\n        <div class=\"col-12 tile-info text-center\">\n          NAŚWIETLENIE\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-4\">\n          <i class=\"fa fa-4x\" [ngClass]=\"{'fa-sun-o': light > 40, 'fa-moon-o': light <= 40}\"></i>\n        </div>\n        <div class=\"col-8 text-center value\">\n          {{light}} %\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row justify-content-center\">\n    <div class=\"col-lg-6 d-lg-block d-none tile sun\">\n      <div class=\"row justify-content-center\">\n        <div class=\"col-12 tile-info text-center\">\n          WSCHÓD I ZACHÓD SŁOŃCA\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-6 text-center value-md\">\n          <i class=\"fa fa-sun-o\"></i> {{sunriseSunset.sunrise}}\n        </div>\n        <div class=\"col-6 text-center value-md\">\n          <i class=\"fa fa-moon-o\"></i> {{sunriseSunset.sunset}}\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-12 col-sm-12 d-lg-none tile sun\">\n      <div class=\"row justify-content-center\">\n        <div class=\"col-12 tile-info text-center\">\n          WSCHÓD I ZACHÓD SŁOŃCA\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-12 text-center value-md\">\n          <i class=\"fa fa-sun-o\"></i> {{sunriseSunset.sunrise}}\n        </div>\n      </div>\n      <div class=\"row justify-content-center align-items-center\">\n        <div class=\"col-12 text-center value-md\">\n          <i class=\"fa fa-moon-o\"></i> {{sunriseSunset.sunset}}\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/all-parameter-tiles/all-parameter-tiles.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/all-parameter-tiles/all-parameter-tiles.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AllParameterTilesComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_constants__ = __webpack_require__("../../../../../src/app/app.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__("../../../../moment/moment.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var SunriseSunset = (function () {
+    function SunriseSunset() {
+        this.sunrise = '';
+        this.sunset = '';
+        this.dayLength = '';
+    }
+    return SunriseSunset;
+}());
+var AllParameterTilesComponent = (function () {
+    function AllParameterTilesComponent(http) {
+        this.http = http;
+        this.refreshInterval = 60000;
+        this.insideTemp = 0.0;
+        this.outsideTemp = 0.0;
+        this.humidity = 0;
+        this.pressure = 0;
+        this.light = 0;
+        this.currentHour = new Date();
+        this.currentDate = __WEBPACK_IMPORTED_MODULE_4_moment__().format('DD . MM . YYYY');
+        this.sunriseSunset = new SunriseSunset();
+    }
+    AllParameterTilesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.http.get("https://api.sunrise-sunset.org/json?lat=52.4167&lng=16.9667&formatted=0")
+            .subscribe(function (response) {
+            var r = response.json();
+            _this.sunriseSunset.sunrise = __WEBPACK_IMPORTED_MODULE_4_moment__(r.results.sunrise).format('HH : mm : ss');
+            _this.sunriseSunset.sunset = __WEBPACK_IMPORTED_MODULE_4_moment__(r.results.sunset).format('HH : mm : ss');
+            _this.sunriseSunset.dayLength = __WEBPACK_IMPORTED_MODULE_4_moment__().startOf('day')
+                .seconds(r.results.day_length)
+                .format('HH:mm:ss');
+        });
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, this.refreshInterval).subscribe(function () {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/humidity/current")
+                .subscribe(function (response) {
+                _this.humidity = parseInt(response.json());
+            });
+        });
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, this.refreshInterval).subscribe(function () {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/pressure/current")
+                .subscribe(function (response) {
+                _this.pressure = parseInt(response.json());
+            });
+        });
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, this.refreshInterval).subscribe(function () {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/light/current")
+                .subscribe(function (response) {
+                _this.light = parseInt(response.json());
+            });
+        });
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, this.refreshInterval).subscribe(function () {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/temperature/current/inside")
+                .subscribe(function (response) {
+                _this.insideTemp = parseInt(response.json());
+            });
+        });
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, this.refreshInterval).subscribe(function () {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/temperature/current/outside")
+                .subscribe(function (response) {
+                _this.outsideTemp = parseInt(response.json());
+            });
+        });
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, 1000).subscribe(function () {
+            _this.currentHour = new Date();
+        });
+    };
+    return AllParameterTilesComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Number)
+], AllParameterTilesComponent.prototype, "refreshInterval", void 0);
+AllParameterTilesComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-all-parameter-tiles',
+        template: __webpack_require__("../../../../../src/app/all-parameter-tiles/all-parameter-tiles.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/all-parameter-tiles/all-parameter-tiles.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], AllParameterTilesComponent);
+
+var _a;
+//# sourceMappingURL=all-parameter-tiles.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <app-current-temperature></app-current-temperature>\n  <app-current-pressure></app-current-pressure>\n  <app-current-humidity></app-current-humidity>\n  <app-current-light></app-current-light>\n  <app-temperature-chart></app-temperature-chart>\n</div>\n"
+module.exports = "<!--<div class=\"container-fluid\">-->\n<!--<app-current-temperature></app-current-temperature>-->\n<!--<app-current-pressure></app-current-pressure>-->\n<!--<app-current-humidity></app-current-humidity>-->\n<!--<app-current-light></app-current-light>-->\n<!--<app-temperature-chart></app-temperature-chart>-->\n<!--</div>-->\n\n<app-all-parameter-tiles></app-all-parameter-tiles>\n"
 
 /***/ }),
 
@@ -95,12 +232,14 @@ var SERVER_URL = 'http://itworkswell.pl:3000';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mydatepicker__ = __webpack_require__("../../../../mydatepicker/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__current_pressure_current_pressure_component__ = __webpack_require__("../../../../../src/app/current-pressure/current-pressure.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__current_humidity_current_humidity_component__ = __webpack_require__("../../../../../src/app/current-humidity/current-humidity.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__all_parameter_tiles_all_parameter_tiles_component__ = __webpack_require__("../../../../../src/app/all-parameter-tiles/all-parameter-tiles.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -125,7 +264,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__current_temperature_current_temperature_component__["a" /* CurrentTemperatureComponent */],
             __WEBPACK_IMPORTED_MODULE_7__current_light_current_light_component__["a" /* CurrentLightComponent */],
             __WEBPACK_IMPORTED_MODULE_9__current_pressure_current_pressure_component__["a" /* CurrentPressureComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__current_humidity_current_humidity_component__["a" /* CurrentHumidityComponent */]
+            __WEBPACK_IMPORTED_MODULE_10__current_humidity_current_humidity_component__["a" /* CurrentHumidityComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__all_parameter_tiles_all_parameter_tiles_component__["a" /* AllParameterTilesComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],

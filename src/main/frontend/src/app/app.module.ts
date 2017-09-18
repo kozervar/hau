@@ -10,6 +10,7 @@ import {CurrentLightComponent} from './current-light/current-light.component';
 import {MyDatePickerModule} from "mydatepicker";
 import { CurrentPressureComponent } from './current-pressure/current-pressure.component';
 import { CurrentHumidityComponent } from './current-humidity/current-humidity.component';
+import { AllParameterTilesComponent } from './all-parameter-tiles/all-parameter-tiles.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CurrentHumidityComponent } from './current-humidity/current-humidity.co
     CurrentTemperatureComponent,
     CurrentLightComponent,
     CurrentPressureComponent,
-    CurrentHumidityComponent
+    CurrentHumidityComponent,
+    AllParameterTilesComponent
   ],
   imports: [
     BrowserModule,
