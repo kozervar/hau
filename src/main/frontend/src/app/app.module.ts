@@ -8,13 +8,17 @@ import {HttpModule} from '@angular/http';
 import {CurrentTemperatureComponent} from './current-temperature/current-temperature.component';
 import {CurrentLightComponent} from './current-light/current-light.component';
 import {MyDatePickerModule} from "mydatepicker";
+import { CurrentPressureComponent } from './current-pressure/current-pressure.component';
+import { CurrentHumidityComponent } from './current-humidity/current-humidity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemperatureChartComponent,
     CurrentTemperatureComponent,
-    CurrentLightComponent
+    CurrentLightComponent,
+    CurrentPressureComponent,
+    CurrentHumidityComponent
   ],
   imports: [
     BrowserModule,

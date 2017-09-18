@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <app-temperature-chart></app-temperature-chart>\n  <app-current-temperature></app-current-temperature>\n  <app-current-light></app-current-light>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <app-current-temperature></app-current-temperature>\n  <app-current-pressure></app-current-pressure>\n  <app-current-humidity></app-current-humidity>\n  <app-current-light></app-current-light>\n  <app-temperature-chart></app-temperature-chart>\n</div>\n"
 
 /***/ }),
 
@@ -93,12 +93,16 @@ var SERVER_URL = 'http://itworkswell.pl:3000';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__current_temperature_current_temperature_component__ = __webpack_require__("../../../../../src/app/current-temperature/current-temperature.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__current_light_current_light_component__ = __webpack_require__("../../../../../src/app/current-light/current-light.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mydatepicker__ = __webpack_require__("../../../../mydatepicker/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__current_pressure_current_pressure_component__ = __webpack_require__("../../../../../src/app/current-pressure/current-pressure.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__current_humidity_current_humidity_component__ = __webpack_require__("../../../../../src/app/current-humidity/current-humidity.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -119,7 +123,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_4__temperature_chart_temperature_chart_component__["a" /* TemperatureChartComponent */],
             __WEBPACK_IMPORTED_MODULE_6__current_temperature_current_temperature_component__["a" /* CurrentTemperatureComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__current_light_current_light_component__["a" /* CurrentLightComponent */]
+            __WEBPACK_IMPORTED_MODULE_7__current_light_current_light_component__["a" /* CurrentLightComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__current_pressure_current_pressure_component__["a" /* CurrentPressureComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__current_humidity_current_humidity_component__["a" /* CurrentHumidityComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -133,6 +139,119 @@ AppModule = __decorate([
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-humidity/current-humidity.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-12\">\n    <div id=\"currentHumidityChart\"></div>\n    <div class=\"header-panel text-center\">\n      <h3>Wilgotność</h3>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-humidity/current-humidity.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-humidity/current-humidity.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentHumidityComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_constants__ = __webpack_require__("../../../../../src/app/app.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_c3__ = __webpack_require__("../../../../c3/c3.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_c3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_c3__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var CurrentHumidityComponent = (function () {
+    function CurrentHumidityComponent(http) {
+        this.http = http;
+        this.refreshInterval = 10000;
+        this.baseConfig = {
+            data: {
+                columns: [
+                    ['humidity', 0]
+                ],
+                type: 'gauge'
+            },
+            gauge: {
+                min: 0,
+                max: 100,
+                units: '%',
+                label: {
+                    // format: function (value, ratio) {
+                    //   return value / 10 + ' %';
+                    // },
+                    show: false // to turn off the min/max labels.
+                },
+            },
+            color: {
+                pattern: ['#00A4D2'],
+                threshold: {}
+            },
+        };
+    }
+    CurrentHumidityComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.humidityChart = __WEBPACK_IMPORTED_MODULE_4_c3__["generate"](Object.assign({ bindto: '#currentHumidityChart' }, this.baseConfig));
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, this.refreshInterval).subscribe(function () {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_1__app_constants__["a" /* SERVER_URL */] + "/humidity/current")
+                .subscribe(function (response) {
+                _this.humidityChart.load({
+                    columns: [
+                        ['humidity', parseFloat(response.json()).toFixed(2)]
+                    ],
+                });
+            });
+        });
+    };
+    return CurrentHumidityComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Number)
+], CurrentHumidityComponent.prototype, "refreshInterval", void 0);
+CurrentHumidityComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-current-humidity',
+        template: __webpack_require__("../../../../../src/app/current-humidity/current-humidity.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/current-humidity/current-humidity.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], CurrentHumidityComponent);
+
+var _a;
+//# sourceMappingURL=current-humidity.component.js.map
 
 /***/ }),
 
@@ -253,10 +372,92 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/current-pressure/current-pressure.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-12\">\n    <div class=\"header-panel text-center\">\n      <h3>Ciśnienie atmosferyczne: {{pressure}} hPa</h3>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-pressure/current-pressure.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/current-pressure/current-pressure.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentPressureComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_constants__ = __webpack_require__("../../../../../src/app/app.constants.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CurrentPressureComponent = (function () {
+    function CurrentPressureComponent(http) {
+        this.http = http;
+        this.refreshInterval = 10000;
+    }
+    CurrentPressureComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].timer(0, this.refreshInterval).subscribe(function () {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_constants__["a" /* SERVER_URL */] + "/pressure/current")
+                .subscribe(function (response) {
+                _this.pressure = Number.parseFloat(response.text());
+            });
+        });
+    };
+    return CurrentPressureComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Number)
+], CurrentPressureComponent.prototype, "refreshInterval", void 0);
+CurrentPressureComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'app-current-pressure',
+        template: __webpack_require__("../../../../../src/app/current-pressure/current-pressure.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/current-pressure/current-pressure.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], CurrentPressureComponent);
+
+var _a;
+//# sourceMappingURL=current-pressure.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/current-temperature/current-temperature.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-12\">\n    <div id=\"currentInsideTempChart\"></div>\n    <div class=\"header-panel text-center\">\n      <h3>Wewnątrz pomieszczenia</h3>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-12\">\n    <div id=\"currentOutsideTempChart\"></div>\n    <div class=\"header-panel text-center\">\n      <h3>Na zewnątrz pomieszczenia</h3>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-12\">\n    <div id=\"currentInsideTempChart\"></div>\n    <div class=\"header-panel text-center\">\n      <h3>Temp. wewnątrz pomieszczenia</h3>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-12\">\n    <div id=\"currentOutsideTempChart\"></div>\n    <div class=\"header-panel text-center\">\n      <h3>Temp. na zewnątrz pomieszczenia</h3>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
