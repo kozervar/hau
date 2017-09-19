@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import {Moment} from 'moment';
 import {SERVER_URL} from "../app.constants";
 import "rxjs/add/operator/map";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs/Rx";
 import "rxjs/add/observable/forkJoin";
 import {IMyDate, IMyDateModel, IMyDpOptions} from "mydatepicker";
 

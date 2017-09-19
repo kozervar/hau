@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs/Rx";
 import {SERVER_URL} from "../app.constants";
 import * as moment from 'moment';
 

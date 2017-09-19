@@ -3,7 +3,7 @@ import * as c3 from 'c3';
 import {ChartAPI} from 'c3';
 import {Http} from "@angular/http";
 import {SERVER_URL} from "../app.constants";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs/Rx";
 import "rxjs/add/observable/timer";
 import "rxjs/add/observable/interval";
 
