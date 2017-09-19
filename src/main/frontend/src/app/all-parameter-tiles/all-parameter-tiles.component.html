@@ -65,18 +65,18 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2 tile" [ngClass]="{'sun': light > 40, 'moon': light <= 40}">
+    <div class="col-lg-2 tile" [ngClass]="{'sun': light > 400, 'moon': light <= 400}">
       <div class="row justify-content-center">
         <div class="col-12 tile-info text-center">
-          NAŚWIETLENIE
+          INDEX UV
         </div>
       </div>
       <div class="row justify-content-center align-items-center">
         <div class="col-4">
-          <i class="fa fa-4x" [ngClass]="{'fa-sun-o': light > 40, 'fa-moon-o': light <= 40}"></i>
+          <i class="fa fa-4x" [ngClass]="{'fa-sun-o': light > 400, 'fa-moon-o': light <= 400}"></i>
         </div>
         <div class="col-8 text-center value">
-          {{light}} %
+          {{light}}
         </div>
       </div>
     </div>

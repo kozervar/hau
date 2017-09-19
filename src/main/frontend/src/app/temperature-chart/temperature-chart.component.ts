@@ -27,13 +27,13 @@ export class TemperatureChartComponent implements OnInit {
 
   public temperatureChart: ChartAPI;
 
-  private myDatePickerOptions: IMyDpOptions = {
+  public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'dd.mm.yyyy',
   };
 
-  private selDateFrom: IMyDate = {year: 0, month: 0, day: 0};
+  public selDateFrom: IMyDate = {year: 0, month: 0, day: 0};
 
-  private selDateTo: IMyDate = {year: 0, month: 0, day: 0};
+  public selDateTo: IMyDate = {year: 0, month: 0, day: 0};
 
   private interval:string = 'HOUR';
 
