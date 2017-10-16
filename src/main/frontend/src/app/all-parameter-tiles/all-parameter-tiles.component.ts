@@ -3,11 +3,20 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {SERVER_URL} from "../app.constants";
 import * as moment from 'moment';
+import {isNumber} from "util";
 
 class SunriseSunset {
   sunrise: string = '';
   sunset: string = '';
   dayLength:string = '';
+}
+
+interface MiningStats {
+  rigName:string,
+  name:string,
+  temp:number,
+  power:number,
+  fan:string,
 }
 
 @Component({
@@ -36,6 +45,10 @@ export class AllParameterTilesComponent implements OnInit {
 
   public sunriseSunset:SunriseSunset = new SunriseSunset();
 
+  public rigData: MiningStats[] = [];
+
+  public rigPower: number = 0.0;
+
   constructor(private http: Http) {
   }
 
@@ -52,31 +65,61 @@ export class AllParameterTilesComponent implements OnInit {
     Observable.timer(0, this.refreshInterval).subscribe(() => {
       this.http.get(`${SERVER_URL}/humidity/current`)
         .subscribe(response => {
-          this.humidity = parseInt(response.json());
+          let val = parseInt(response.json());
+          if(!isNaN(val)) {
+            this.humidity = val;
+          }
         });
     });
     Observable.timer(0, this.refreshInterval).subscribe(() => {
       this.http.get(`${SERVER_URL}/pressure/current`)
         .subscribe(response => {
-          this.pressure = parseInt(response.json());
+          let val = parseInt(response.json());
+          if(!isNaN(val)) {
+            this.pressure = val;
+          }
         });
     });
     Observable.timer(0, this.refreshInterval).subscribe(() => {
       this.http.get(`${SERVER_URL}/light/current`)
         .subscribe(response => {
-          this.light = parseInt(response.json());
+          let val = parseInt(response.json());
+          if(!isNaN(val)) {
+            this.light = val;
+          }
         });
     });
     Observable.timer(0, this.refreshInterval).subscribe(() => {
       this.http.get(`${SERVER_URL}/temperature/current/inside`)
         .subscribe(response => {
-          this.insideTemp = parseInt(response.json());
+          let val = parseInt(response.json());
+          if(!isNaN(val)) {
+            this.insideTemp = val;
+          }
         });
     });
     Observable.timer(0, this.refreshInterval).subscribe(() => {
       this.http.get(`${SERVER_URL}/temperature/current/outside`)
         .subscribe(response => {
-          this.outsideTemp = parseInt(response.json());
+          let val = parseInt(response.json());
+          if(!isNaN(val)) {
+            this.outsideTemp = val;
+          }
+        });
+    });
+    Observable.timer(0, this.refreshInterval).subscribe(() => {
+      this.http.get(`${SERVER_URL}/mining/stats/KRIG`)
+        .subscribe(response => {
+          this.rigData = response.json();
+          for(let rd of this.rigData) {
+            rd.power = Math.round(rd.power)
+          }
+        });
+    });
+    Observable.timer(0, this.refreshInterval).subscribe(() => {
+      this.http.get(`${SERVER_URL}/mining/watts/KRIG`)
+        .subscribe(response => {
+          this.rigPower = Math.round(response.json())
         });
     });
     Observable.timer(0, 1000).subscribe(() => {
